@@ -1,0 +1,871 @@
+
+■■ SELECT ALL FROM USER TABLE
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:03.836 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/identity/users"
+18:24:03.867 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.070 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/identity/users" resulted in 200 (null)
+18:24:04.070 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{data=[{id=fozzie, firstName=Fozzie, lastName=Bear, url=http://localhost:8081/activiti-webapp-rest2/service/identity/users/fozzie, email=fozzie@activiti.org, pictureUrl=null}, {id=gonzo, firstName=Gonzo, lastName=The Great, url=http://localhost:8081/activiti-webapp-rest2/service/identity/users/gonzo, email=gonzo@activiti.org, pictureUrl=null}, {id=kermit, firstName=Kermit, lastName=The Frog, url=http://localhost:8081/activiti-webapp-rest2/service/identity/users/kermit, email=kermit@activiti.org, pictureUrl=null}], total=3, start=0, sort=id, order=asc, size=3}
+
+formatting..
+{
+    "data": [
+        {
+            "email": "fozzie@activiti.org",
+            "firstName": "Fozzie",
+            "id": "fozzie",
+            "lastName": "Bear",
+            "url": "http://localhost:8081/activiti-webapp-rest2/service/identity/users/fozzie"
+        },
+        {
+            "email": "gonzo@activiti.org",
+            "firstName": "Gonzo",
+            "id": "gonzo",
+            "lastName": "The Great",
+            "url": "http://localhost:8081/activiti-webapp-rest2/service/identity/users/gonzo"
+        },
+        {
+            "email": "kermit@activiti.org",
+            "firstName": "Kermit",
+            "id": "kermit",
+            "lastName": "The Frog",
+            "url": "http://localhost:8081/activiti-webapp-rest2/service/identity/users/kermit"
+        }
+    ],
+    "order": "asc",
+    "size": 3,
+    "sort": "id",
+    "start": 0,
+    "total": 3
+}
+
+
+■■ INSERT A RECORD INTO USER TABLE
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Content-Type=[application/json], Accept=[application/json]}
+{
+    "email": "hoge1824@alfresco.org",
+    "firstName": "Tijs",
+    "id": "hoge1824",
+    "lastName": "Barrez",
+    "password": "pass123"
+}
+
+18:24:04.211 [main] DEBUG org.springframework.web.client.RestTemplate - Created POST request for "http://localhost:8081/activiti-webapp-rest2/service/identity/users"
+18:24:04.211 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.211 [main] DEBUG org.springframework.web.client.RestTemplate - Writing [{"firstName":"Tijs","lastName":"Barrez","password":"pass123","id":"hoge1824","email":"hoge1824@alfresco.org"}] as "application/json" using [org.springframework.http.converter.StringHttpMessageConverter@3e84448c]
+18:24:04.367 [main] DEBUG org.springframework.web.client.RestTemplate - POST request for "http://localhost:8081/activiti-webapp-rest2/service/identity/users" resulted in 201 (null)
+18:24:04.379 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+201
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{id=hoge1824, firstName=Tijs, lastName=Barrez, url=http://localhost:8081/activiti-webapp-rest2/service/identity/users/hoge1824, email=hoge1824@alfresco.org, pictureUrl=null, password=pass123}
+
+formatting..
+{
+    "email": "hoge1824@alfresco.org",
+    "firstName": "Tijs",
+    "id": "hoge1824",
+    "lastName": "Barrez",
+    "password": "pass123",
+    "url": "http://localhost:8081/activiti-webapp-rest2/service/identity/users/hoge1824"
+}
+
+
+■■ SELECT ALL FROM PROCESS_DEFINITION TABLE
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.380 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions"
+18:24:04.380 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.396 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions" resulted in 200 (null)
+18:24:04.396 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{data=[{id=createTimersProcess:1:36, url=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/createTimersProcess:1:36, key=createTimersProcess, version=1, name=Create timers process, description=Test process to create a number of timers., tenantId=, deploymentId=20, deploymentUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20, resource=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/createTimersProcess.bpmn20.xml, diagramResource=null, category=Examples, graphicalNotationDefined=false, suspended=false, startFormDefined=false}, {id=oneTaskProcess:1:35, url=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, key=oneTaskProcess, version=1, name=Famous One Task Process, description=null, tenantId=, deploymentId=20, deploymentUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20, resource=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/oneTaskProcess.bpmn20.xml, diagramResource=null, category=Examples, graphicalNotationDefined=false, suspended=false, startFormDefined=false}, {id=fixSystemFailure:1:32, url=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/fixSystemFailure:1:32, key=fixSystemFailure, version=1, name=Fix system failure, description=null, tenantId=, deploymentId=20, deploymentUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20, resource=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/FixSystemFailureProcess.bpmn20.xml, diagramResource=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/FixSystemFailureProcess.png, category=Examples, graphicalNotationDefined=false, suspended=false, startFormDefined=false}, {id=escalationExample:1:34, url=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/escalationExample:1:34, key=escalationExample, version=1, name=Helpdesk process, description=null, tenantId=, deploymentId=20, deploymentUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20, resource=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/Helpdesk.bpmn20.xml, diagramResource=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/Helpdesk.png, category=Examples, graphicalNotationDefined=false, suspended=false, startFormDefined=false}, {id=reviewSaledLead:1:33, url=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/reviewSaledLead:1:33, key=reviewSaledLead, version=1, name=Review sales lead, description=null, tenantId=, deploymentId=20, deploymentUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20, resource=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/reviewSalesLead.bpmn20.xml, diagramResource=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/reviewSalesLead.reviewSaledLead.png, category=Examples, graphicalNotationDefined=true, suspended=false, startFormDefined=false}, {id=vacationRequest:1:31, url=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/vacationRequest:1:31, key=vacationRequest, version=1, name=Vacation request, description=null, tenantId=, deploymentId=20, deploymentUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20, resource=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/VacationRequest.bpmn20.xml, diagramResource=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/VacationRequest.png, category=http://activiti.org/bpmn20, graphicalNotationDefined=false, suspended=false, startFormDefined=false}], total=6, start=0, sort=name, order=asc, size=6}
+
+formatting..
+{
+    "data": [
+        {
+            "category": "Examples",
+            "deploymentId": "20",
+            "deploymentUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20",
+            "description": "Test process to create a number of timers.",
+            "graphicalNotationDefined": false,
+            "id": "createTimersProcess:1:36",
+            "key": "createTimersProcess",
+            "name": "Create timers process",
+            "resource": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/createTimersProcess.bpmn20.xml",
+            "startFormDefined": false,
+            "suspended": false,
+            "tenantId": "",
+            "url": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/createTimersProcess:1:36",
+            "version": 1
+        },
+        {
+            "category": "Examples",
+            "deploymentId": "20",
+            "deploymentUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20",
+            "graphicalNotationDefined": false,
+            "id": "oneTaskProcess:1:35",
+            "key": "oneTaskProcess",
+            "name": "Famous One Task Process",
+            "resource": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/oneTaskProcess.bpmn20.xml",
+            "startFormDefined": false,
+            "suspended": false,
+            "tenantId": "",
+            "url": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+            "version": 1
+        },
+        {
+            "category": "Examples",
+            "deploymentId": "20",
+            "deploymentUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20",
+            "diagramResource": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/FixSystemFailureProcess.png",
+            "graphicalNotationDefined": false,
+            "id": "fixSystemFailure:1:32",
+            "key": "fixSystemFailure",
+            "name": "Fix system failure",
+            "resource": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/FixSystemFailureProcess.bpmn20.xml",
+            "startFormDefined": false,
+            "suspended": false,
+            "tenantId": "",
+            "url": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/fixSystemFailure:1:32",
+            "version": 1
+        },
+        {
+            "category": "Examples",
+            "deploymentId": "20",
+            "deploymentUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20",
+            "diagramResource": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/Helpdesk.png",
+            "graphicalNotationDefined": false,
+            "id": "escalationExample:1:34",
+            "key": "escalationExample",
+            "name": "Helpdesk process",
+            "resource": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/Helpdesk.bpmn20.xml",
+            "startFormDefined": false,
+            "suspended": false,
+            "tenantId": "",
+            "url": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/escalationExample:1:34",
+            "version": 1
+        },
+        {
+            "category": "Examples",
+            "deploymentId": "20",
+            "deploymentUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20",
+            "diagramResource": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/reviewSalesLead.reviewSaledLead.png",
+            "graphicalNotationDefined": true,
+            "id": "reviewSaledLead:1:33",
+            "key": "reviewSaledLead",
+            "name": "Review sales lead",
+            "resource": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/reviewSalesLead.bpmn20.xml",
+            "startFormDefined": false,
+            "suspended": false,
+            "tenantId": "",
+            "url": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/reviewSaledLead:1:33",
+            "version": 1
+        },
+        {
+            "category": "http://activiti.org/bpmn20",
+            "deploymentId": "20",
+            "deploymentUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20",
+            "diagramResource": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/VacationRequest.png",
+            "graphicalNotationDefined": false,
+            "id": "vacationRequest:1:31",
+            "key": "vacationRequest",
+            "name": "Vacation request",
+            "resource": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/VacationRequest.bpmn20.xml",
+            "startFormDefined": false,
+            "suspended": false,
+            "tenantId": "",
+            "url": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/vacationRequest:1:31",
+            "version": 1
+        }
+    ],
+    "order": "asc",
+    "size": 6,
+    "sort": "name",
+    "start": 0,
+    "total": 6
+}
+
+
+■■ SELECT A SPECIFIC PROCESS_DEFINITION
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.396 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions?key=createTimersProcess"
+18:24:04.396 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.411 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions?key=createTimersProcess" resulted in 200 (null)
+18:24:04.411 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{data=[{id=createTimersProcess:1:36, url=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/createTimersProcess:1:36, key=createTimersProcess, version=1, name=Create timers process, description=Test process to create a number of timers., tenantId=, deploymentId=20, deploymentUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20, resource=http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/createTimersProcess.bpmn20.xml, diagramResource=null, category=Examples, graphicalNotationDefined=false, suspended=false, startFormDefined=false}], total=1, start=0, sort=name, order=asc, size=1}
+
+formatting..
+{
+    "data": [{
+        "category": "Examples",
+        "deploymentId": "20",
+        "deploymentUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20",
+        "description": "Test process to create a number of timers.",
+        "graphicalNotationDefined": false,
+        "id": "createTimersProcess:1:36",
+        "key": "createTimersProcess",
+        "name": "Create timers process",
+        "resource": "http://localhost:8081/activiti-webapp-rest2/service/repository/deployments/20/resources/createTimersProcess.bpmn20.xml",
+        "startFormDefined": false,
+        "suspended": false,
+        "tenantId": "",
+        "url": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/createTimersProcess:1:36",
+        "version": 1
+    }],
+    "order": "asc",
+    "size": 1,
+    "sort": "name",
+    "start": 0,
+    "total": 1
+}
+
+
+■■ SELECT ALL PROCESS INSTANCES
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.411 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances"
+18:24:04.411 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.427 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances" resulted in 200 (null)
+18:24:04.427 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{data=[], total=0, start=0, sort=id, order=asc, size=0}
+
+formatting..
+{
+    "data": [],
+    "order": "asc",
+    "size": 0,
+    "sort": "id",
+    "start": 0,
+    "total": 0
+}
+
+>> 0 process(s) is(are) currently active.
+
+■■ START A PROCESS
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Content-Type=[application/json], Accept=[application/json]}
+{
+    "businessKey": "myBusinessKey",
+    "processDefinitionId": "oneTaskProcess:1:35",
+    "variables": [{
+        "name": "myVar",
+        "value": "This is a variable"
+    }]
+}
+
+18:24:04.427 [main] DEBUG org.springframework.web.client.RestTemplate - Created POST request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances"
+18:24:04.427 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.427 [main] DEBUG org.springframework.web.client.RestTemplate - Writing [{"processDefinitionId":"oneTaskProcess:1:35","variables":[{"name":"myVar","value":"This is a variable"}],"businessKey":"myBusinessKey"}] as "application/json" using [org.springframework.http.converter.StringHttpMessageConverter@3e84448c]
+18:24:04.536 [main] DEBUG org.springframework.web.client.RestTemplate - POST request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances" resulted in 201 (null)
+18:24:04.536 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+201
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{id=40, url=http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40, businessKey=myBusinessKey, suspended=false, ended=false, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, processDefinitionKey=oneTaskProcess, activityId=null, variables=[], tenantId=, name=null, completed=false}
+
+formatting..
+{
+    "businessKey": "myBusinessKey",
+    "completed": false,
+    "ended": false,
+    "id": "40",
+    "processDefinitionId": "oneTaskProcess:1:35",
+    "processDefinitionKey": "oneTaskProcess",
+    "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+    "suspended": false,
+    "tenantId": "",
+    "url": "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40",
+    "variables": []
+}
+
+
+■■ SELECT ALL PROCESS INSTANCES
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.536 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances"
+18:24:04.536 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.552 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances" resulted in 200 (null)
+18:24:04.552 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{data=[{id=40, url=http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40, businessKey=myBusinessKey, suspended=false, ended=false, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, processDefinitionKey=oneTaskProcess, activityId=null, variables=[], tenantId=, name=null, completed=false}], total=1, start=0, sort=id, order=asc, size=1}
+
+formatting..
+{
+    "data": [{
+        "businessKey": "myBusinessKey",
+        "completed": false,
+        "ended": false,
+        "id": "40",
+        "processDefinitionId": "oneTaskProcess:1:35",
+        "processDefinitionKey": "oneTaskProcess",
+        "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+        "suspended": false,
+        "tenantId": "",
+        "url": "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40",
+        "variables": []
+    }],
+    "order": "asc",
+    "size": 1,
+    "sort": "id",
+    "start": 0,
+    "total": 1
+}
+
+>> 1 process(s) is(are) currently active.
+
+■■  SELECT A SPESIFIC PROCESS INSTANCE
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.552 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40"
+18:24:04.552 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.583 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40" resulted in 200 (null)
+18:24:04.583 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{id=40, url=http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40, businessKey=myBusinessKey, suspended=false, ended=false, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, processDefinitionKey=oneTaskProcess, activityId=null, variables=[], tenantId=, name=null, completed=false}
+
+formatting..
+{
+    "businessKey": "myBusinessKey",
+    "completed": false,
+    "ended": false,
+    "id": "40",
+    "processDefinitionId": "oneTaskProcess:1:35",
+    "processDefinitionKey": "oneTaskProcess",
+    "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+    "suspended": false,
+    "tenantId": "",
+    "url": "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40",
+    "variables": []
+}
+
+
+■■  SUSPEND A SPESIFIC PROCESS INSTANCE
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Content-Type=[application/json], Accept=[application/json]}
+{"action": "suspend"}
+
+18:24:04.599 [main] DEBUG org.springframework.web.client.RestTemplate - Created PUT request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40"
+18:24:04.599 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.599 [main] DEBUG org.springframework.web.client.RestTemplate - Writing [{"action":"suspend"}] as "application/json" using [org.springframework.http.converter.StringHttpMessageConverter@3e84448c]
+18:24:04.614 [main] DEBUG org.springframework.web.client.RestTemplate - PUT request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40" resulted in 200 (null)
+18:24:04.614 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{id=40, url=http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40, businessKey=myBusinessKey, suspended=true, ended=false, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, processDefinitionKey=oneTaskProcess, activityId=null, variables=[], tenantId=, name=null, completed=false}
+
+formatting..
+{
+    "businessKey": "myBusinessKey",
+    "completed": false,
+    "ended": false,
+    "id": "40",
+    "processDefinitionId": "oneTaskProcess:1:35",
+    "processDefinitionKey": "oneTaskProcess",
+    "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+    "suspended": true,
+    "tenantId": "",
+    "url": "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40",
+    "variables": []
+}
+
+
+■■  SELECT A SPESIFIC PROCESS INSTANCE
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.614 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40"
+18:24:04.614 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.646 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40" resulted in 200 (null)
+18:24:04.646 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{id=40, url=http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40, businessKey=myBusinessKey, suspended=true, ended=false, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, processDefinitionKey=oneTaskProcess, activityId=null, variables=[], tenantId=, name=null, completed=false}
+
+formatting..
+{
+    "businessKey": "myBusinessKey",
+    "completed": false,
+    "ended": false,
+    "id": "40",
+    "processDefinitionId": "oneTaskProcess:1:35",
+    "processDefinitionKey": "oneTaskProcess",
+    "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+    "suspended": true,
+    "tenantId": "",
+    "url": "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40",
+    "variables": []
+}
+
+
+■■  ACTIVATE A SPESIFIC PROCESS INSTANCE
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Content-Type=[application/json], Accept=[application/json]}
+{"action": "activate"}
+
+18:24:04.646 [main] DEBUG org.springframework.web.client.RestTemplate - Created PUT request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40"
+18:24:04.646 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.646 [main] DEBUG org.springframework.web.client.RestTemplate - Writing [{"action":"activate"}] as "application/json" using [org.springframework.http.converter.StringHttpMessageConverter@3e84448c]
+18:24:04.661 [main] DEBUG org.springframework.web.client.RestTemplate - PUT request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40" resulted in 200 (null)
+18:24:04.661 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{id=40, url=http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40, businessKey=myBusinessKey, suspended=false, ended=false, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, processDefinitionKey=oneTaskProcess, activityId=null, variables=[], tenantId=, name=null, completed=false}
+
+formatting..
+{
+    "businessKey": "myBusinessKey",
+    "completed": false,
+    "ended": false,
+    "id": "40",
+    "processDefinitionId": "oneTaskProcess:1:35",
+    "processDefinitionKey": "oneTaskProcess",
+    "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+    "suspended": false,
+    "tenantId": "",
+    "url": "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40",
+    "variables": []
+}
+
+
+■■ SELECT ALL PROCESS INSTANCES
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.661 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances"
+18:24:04.661 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.692 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances" resulted in 200 (null)
+18:24:04.692 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{data=[{id=40, url=http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40, businessKey=myBusinessKey, suspended=false, ended=false, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, processDefinitionKey=oneTaskProcess, activityId=null, variables=[], tenantId=, name=null, completed=false}], total=1, start=0, sort=id, order=asc, size=1}
+
+formatting..
+{
+    "data": [{
+        "businessKey": "myBusinessKey",
+        "completed": false,
+        "ended": false,
+        "id": "40",
+        "processDefinitionId": "oneTaskProcess:1:35",
+        "processDefinitionKey": "oneTaskProcess",
+        "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+        "suspended": false,
+        "tenantId": "",
+        "url": "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40",
+        "variables": []
+    }],
+    "order": "asc",
+    "size": 1,
+    "sort": "id",
+    "start": 0,
+    "total": 1
+}
+
+>> 1 process(s) is(are) currently active.
+
+■■  DELETE A SPESIFIC PROCESS INSTANCE
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.692 [main] DEBUG org.springframework.web.client.RestTemplate - Created DELETE request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40"
+18:24:04.692 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.724 [main] DEBUG org.springframework.web.client.RestTemplate - DELETE request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/40" resulted in 204 (null)
+
+RESPONSE:
+204
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+null
+
+
+■■ SELECT ALL PROCESS INSTANCES
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.724 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances"
+18:24:04.724 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.724 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances" resulted in 200 (null)
+18:24:04.724 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{data=[], total=0, start=0, sort=id, order=asc, size=0}
+
+formatting..
+{
+    "data": [],
+    "order": "asc",
+    "size": 0,
+    "sort": "id",
+    "start": 0,
+    "total": 0
+}
+
+>> 0 process(s) is(are) currently active.
+
+■■ SELECT ALL HISTORIC PROCESS INSTANCES
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.724 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/history/historic-process-instances?finished=true"
+18:24:04.724 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.833 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/history/historic-process-instances?finished=true" resulted in 200 (null)
+18:24:04.833 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{data=[{id=40, url=http://localhost:8081/activiti-webapp-rest2/service/history/historic-process-instances/40, businessKey=myBusinessKey, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, startTime=2017-11-16T18:24:04.489+09:00, endTime=2017-11-16T18:24:04.708+09:00, durationInMillis=219, startUserId=kermit, startActivityId=theStart, endActivityId=null, deleteReason=process instance deleted, superProcessInstanceId=null, variables=[], tenantId=, name=null}], total=1, start=0, sort=processInstanceId, order=asc, size=1}
+
+formatting..
+{
+    "data": [{
+        "businessKey": "myBusinessKey",
+        "deleteReason": "process instance deleted",
+        "durationInMillis": 219,
+        "endTime": "2017-11-16T18:24:04.708+09:00",
+        "id": "40",
+        "processDefinitionId": "oneTaskProcess:1:35",
+        "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+        "startActivityId": "theStart",
+        "startTime": "2017-11-16T18:24:04.489+09:00",
+        "startUserId": "kermit",
+        "tenantId": "",
+        "url": "http://localhost:8081/activiti-webapp-rest2/service/history/historic-process-instances/40",
+        "variables": []
+    }],
+    "order": "asc",
+    "size": 1,
+    "sort": "processInstanceId",
+    "start": 0,
+    "total": 1
+}
+
+
+■■ START A PROCESS
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Content-Type=[application/json], Accept=[application/json]}
+{
+    "businessKey": "myBusinessKey",
+    "processDefinitionKey": "oneTaskProcess",
+    "variables": [{
+        "name": "myVar",
+        "value": "This is a variable"
+    }]
+}
+
+18:24:04.833 [main] DEBUG org.springframework.web.client.RestTemplate - Created POST request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances"
+18:24:04.833 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.833 [main] DEBUG org.springframework.web.client.RestTemplate - Writing [{"variables":[{"name":"myVar","value":"This is a variable"}],"businessKey":"myBusinessKey","processDefinitionKey":"oneTaskProcess"}] as "application/json" using [org.springframework.http.converter.StringHttpMessageConverter@3e84448c]
+18:24:04.864 [main] DEBUG org.springframework.web.client.RestTemplate - POST request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances" resulted in 201 (null)
+18:24:04.864 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+201
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{id=50, url=http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/50, businessKey=myBusinessKey, suspended=false, ended=false, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, processDefinitionKey=oneTaskProcess, activityId=null, variables=[], tenantId=, name=null, completed=false}
+
+formatting..
+{
+    "businessKey": "myBusinessKey",
+    "completed": false,
+    "ended": false,
+    "id": "50",
+    "processDefinitionId": "oneTaskProcess:1:35",
+    "processDefinitionKey": "oneTaskProcess",
+    "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+    "suspended": false,
+    "tenantId": "",
+    "url": "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/50",
+    "variables": []
+}
+
+
+■■ SELECT ALL PROCESS INSTANCES
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.864 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances"
+18:24:04.864 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.880 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances" resulted in 200 (null)
+18:24:04.880 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{data=[{id=50, url=http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/50, businessKey=myBusinessKey, suspended=false, ended=false, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, processDefinitionKey=oneTaskProcess, activityId=null, variables=[], tenantId=, name=null, completed=false}], total=1, start=0, sort=id, order=asc, size=1}
+
+formatting..
+{
+    "data": [{
+        "businessKey": "myBusinessKey",
+        "completed": false,
+        "ended": false,
+        "id": "50",
+        "processDefinitionId": "oneTaskProcess:1:35",
+        "processDefinitionKey": "oneTaskProcess",
+        "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+        "suspended": false,
+        "tenantId": "",
+        "url": "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/50",
+        "variables": []
+    }],
+    "order": "asc",
+    "size": 1,
+    "sort": "id",
+    "start": 0,
+    "total": 1
+}
+
+>> 1 process(s) is(are) currently active.
+
+■■ SELECT ALL TASKS
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.880 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/tasks"
+18:24:04.880 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.927 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/tasks" resulted in 200 (null)
+18:24:04.927 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{data=[{id=59, url=http://localhost:8081/activiti-webapp-rest2/service/runtime/tasks/59, owner=null, assignee=kermit, delegationState=null, name=my task, description=null, createTime=2017-11-16T18:24:04.849+09:00, dueDate=null, priority=50, suspended=false, taskDefinitionKey=theTask, tenantId=, category=null, formKey=null, parentTaskId=null, parentTaskUrl=null, executionId=56, executionUrl=http://localhost:8081/activiti-webapp-rest2/service/runtime/executions/56, processInstanceId=50, processInstanceUrl=http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/50, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, variables=[]}], total=1, start=0, sort=id, order=asc, size=1}
+
+formatting..
+{
+    "data": [{
+        "assignee": "kermit",
+        "createTime": "2017-11-16T18:24:04.849+09:00",
+        "executionId": "56",
+        "executionUrl": "http://localhost:8081/activiti-webapp-rest2/service/runtime/executions/56",
+        "id": "59",
+        "name": "my task",
+        "priority": 50,
+        "processDefinitionId": "oneTaskProcess:1:35",
+        "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+        "processInstanceId": "50",
+        "processInstanceUrl": "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/50",
+        "suspended": false,
+        "taskDefinitionKey": "theTask",
+        "tenantId": "",
+        "url": "http://localhost:8081/activiti-webapp-rest2/service/runtime/tasks/59",
+        "variables": []
+    }],
+    "order": "asc",
+    "size": 1,
+    "sort": "id",
+    "start": 0,
+    "total": 1
+}
+
+
+■■ SELECT A SPESIFIC TASK
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.927 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/tasks/59"
+18:24:04.927 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.942 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/tasks/59" resulted in 200 (null)
+18:24:04.942 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{id=59, url=http://localhost:8081/activiti-webapp-rest2/service/runtime/tasks/59, owner=null, assignee=kermit, delegationState=null, name=my task, description=null, createTime=2017-11-16T18:24:04.849+09:00, dueDate=null, priority=50, suspended=false, taskDefinitionKey=theTask, tenantId=, category=null, formKey=null, parentTaskId=null, parentTaskUrl=null, executionId=56, executionUrl=http://localhost:8081/activiti-webapp-rest2/service/runtime/executions/56, processInstanceId=50, processInstanceUrl=http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/50, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, variables=[]}
+
+formatting..
+{
+    "assignee": "kermit",
+    "createTime": "2017-11-16T18:24:04.849+09:00",
+    "executionId": "56",
+    "executionUrl": "http://localhost:8081/activiti-webapp-rest2/service/runtime/executions/56",
+    "id": "59",
+    "name": "my task",
+    "priority": 50,
+    "processDefinitionId": "oneTaskProcess:1:35",
+    "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+    "processInstanceId": "50",
+    "processInstanceUrl": "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances/50",
+    "suspended": false,
+    "taskDefinitionKey": "theTask",
+    "tenantId": "",
+    "url": "http://localhost:8081/activiti-webapp-rest2/service/runtime/tasks/59",
+    "variables": []
+}
+
+
+■■ COMPLETE A TASK
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Content-Type=[application/json], Accept=[application/json]}
+{
+    "action": "complete",
+    "variables": []
+}
+
+18:24:04.942 [main] DEBUG org.springframework.web.client.RestTemplate - Created POST request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/tasks/59"
+18:24:04.942 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.942 [main] DEBUG org.springframework.web.client.RestTemplate - Writing [{"variables":[],"action":"complete"}] as "application/json" using [org.springframework.http.converter.StringHttpMessageConverter@3e84448c]
+18:24:04.974 [main] DEBUG org.springframework.web.client.RestTemplate - POST request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/tasks/59" resulted in 200 (null)
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Length=[0], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+null
+
+
+■■ SELECT ALL TASKS
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.974 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/tasks"
+18:24:04.974 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:04.989 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/tasks" resulted in 200 (null)
+18:24:04.989 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{data=[], total=0, start=0, sort=id, order=asc, size=0}
+
+formatting..
+{
+    "data": [],
+    "order": "asc",
+    "size": 0,
+    "sort": "id",
+    "start": 0,
+    "total": 0
+}
+
+
+■■ SELECT ALL PROCESS INSTANCES
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:04.989 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances"
+18:24:04.989 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:05.005 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/runtime/process-instances" resulted in 200 (null)
+18:24:05.005 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{data=[], total=0, start=0, sort=id, order=asc, size=0}
+
+formatting..
+{
+    "data": [],
+    "order": "asc",
+    "size": 0,
+    "sort": "id",
+    "start": 0,
+    "total": 0
+}
+
+
+■■ SELECT ALL HISTORIC TASK INSTANCES
+REQUEST:
+{Authorization=[Basic a2VybWl0Omtlcm1pdA==], Accept=[application/json]}
+
+18:24:05.005 [main] DEBUG org.springframework.web.client.RestTemplate - Created GET request for "http://localhost:8081/activiti-webapp-rest2/service/history/historic-task-instances?finished=true"
+18:24:05.005 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
+18:24:05.021 [main] DEBUG org.springframework.web.client.RestTemplate - GET request for "http://localhost:8081/activiti-webapp-rest2/service/history/historic-task-instances?finished=true" resulted in 200 (null)
+18:24:05.021 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class java.lang.Object] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@37ceb1df]
+
+RESPONSE:
+200
+{X-Content-Type-Options=[nosniff], X-XSS-Protection=[1; mode=block], Cache-Control=[no-cache, no-store, max-age=0, must-revalidate], Pragma=[no-cache], Expires=[0], X-Frame-Options=[DENY], Content-Type=[application/json], Transfer-Encoding=[chunked], Date=[Thu, 16 Nov 2017 09:24:04 GMT]}
+{data=[{id=49, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, processInstanceId=40, processInstanceUrl=http://localhost:8081/activiti-webapp-rest2/service/history/historic-process-instances/40, executionId=46, name=my task, description=null, deleteReason=process instance deleted, owner=null, assignee=kermit, startTime=2017-11-16T18:24:04.521+09:00, endTime=2017-11-16T18:24:04.708+09:00, durationInMillis=187, workTimeInMillis=null, claimTime=null, taskDefinitionKey=theTask, formKey=null, priority=50, dueDate=null, parentTaskId=null, url=http://localhost:8081/activiti-webapp-rest2/service/history/historic-task-instances/49, variables=[], tenantId=, category=null}, {id=59, processDefinitionId=oneTaskProcess:1:35, processDefinitionUrl=http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35, processInstanceId=50, processInstanceUrl=http://localhost:8081/activiti-webapp-rest2/service/history/historic-process-instances/50, executionId=56, name=my task, description=null, deleteReason=null, owner=null, assignee=kermit, startTime=2017-11-16T18:24:04.849+09:00, endTime=2017-11-16T18:24:04.974+09:00, durationInMillis=125, workTimeInMillis=null, claimTime=null, taskDefinitionKey=theTask, formKey=null, priority=50, dueDate=null, parentTaskId=null, url=http://localhost:8081/activiti-webapp-rest2/service/history/historic-task-instances/59, variables=[], tenantId=, category=null}], total=2, start=0, sort=taskInstanceId, order=asc, size=2}
+
+formatting..
+{
+    "data": [
+        {
+            "assignee": "kermit",
+            "deleteReason": "process instance deleted",
+            "durationInMillis": 187,
+            "endTime": "2017-11-16T18:24:04.708+09:00",
+            "executionId": "46",
+            "id": "49",
+            "name": "my task",
+            "priority": 50,
+            "processDefinitionId": "oneTaskProcess:1:35",
+            "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+            "processInstanceId": "40",
+            "processInstanceUrl": "http://localhost:8081/activiti-webapp-rest2/service/history/historic-process-instances/40",
+            "startTime": "2017-11-16T18:24:04.521+09:00",
+            "taskDefinitionKey": "theTask",
+            "tenantId": "",
+            "url": "http://localhost:8081/activiti-webapp-rest2/service/history/historic-task-instances/49",
+            "variables": []
+        },
+        {
+            "assignee": "kermit",
+            "durationInMillis": 125,
+            "endTime": "2017-11-16T18:24:04.974+09:00",
+            "executionId": "56",
+            "id": "59",
+            "name": "my task",
+            "priority": 50,
+            "processDefinitionId": "oneTaskProcess:1:35",
+            "processDefinitionUrl": "http://localhost:8081/activiti-webapp-rest2/service/repository/process-definitions/oneTaskProcess:1:35",
+            "processInstanceId": "50",
+            "processInstanceUrl": "http://localhost:8081/activiti-webapp-rest2/service/history/historic-process-instances/50",
+            "startTime": "2017-11-16T18:24:04.849+09:00",
+            "taskDefinitionKey": "theTask",
+            "tenantId": "",
+            "url": "http://localhost:8081/activiti-webapp-rest2/service/history/historic-task-instances/59",
+            "variables": []
+        }
+    ],
+    "order": "asc",
+    "size": 2,
+    "sort": "taskInstanceId",
+    "start": 0,
+    "total": 2
+}
+
