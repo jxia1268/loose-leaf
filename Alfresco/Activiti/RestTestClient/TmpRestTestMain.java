@@ -35,22 +35,27 @@ public class TmpRestTestMain {
 	private static final String URL_RU_PROCESS_INSTANCES = "/runtime/process-instances";
 	private static final String URL_RU_TASKS = "/runtime/tasks";
 	private static final String URL_HI_PROCESS_INSTANCES = "/history/historic-process-instances";
+	private static final String URL_HI_TASK_INSTANCES = "/history/historic-task-instances";
+	
 
 	private static final String SIGN_METHOD_START = "\n■■ ";
 	private static final String SIGN_MARKABLE_STATUS = ">> ";
 
 	private RestTemplate restTemplate = new RestTemplate();//can be injected
-	private String userId = "kermit";//for Basic Auth, not in use yet.
-	private String userPw = "Kermit";//for Basic Auth, not in use yet.
-	private String basicAuthPass;
-	private String basicAuthPass4kermit = "Basic a2VybWl0Omtlcm1pdA==";
+	
+	// available users:
+	// kermit:kermit --> should be "Basic a2VybWl0Omtlcm1pdA=="
+	// gonzo:gonzo
+	// fozzie:fozzie
+	private String userId = "kermit";
+	private String userPw = "kermit";
+
 	private String uniqueStr = createUniqueStrFromCurrentTime();//HHmmで一意文字列を生成する
 	
 	private void execute() {
-		basicAuthPass = basicAuthPass4kermit;
 
 		try {
-			if (needExperiment) {
+			if (NEED_EXPERIMENT) {
 				gotoLaboratory();
 			} else {
 				execWholeScenario();
@@ -62,21 +67,18 @@ public class TmpRestTestMain {
 		}
 	}
 
-	private static boolean needExperiment = true;
+	protected static boolean NEED_EXPERIMENT = false;
 
 	@SuppressWarnings("unchecked")
-	private void gotoLaboratory() throws URISyntaxException {
+	protected void gotoLaboratory() throws URISyntaxException {
 		LinkedHashMap resBody;
 		
-		
-		startProcess("processDefinitionId", "oneTaskProcess:1:35");
 
-		
 	}
 
 
 	@SuppressWarnings("unchecked")
-	private void execWholeScenario() throws URISyntaxException {
+	protected void execWholeScenario() throws URISyntaxException {
 		LinkedHashMap resBody;
 		
 		// ■ ユーザ管理系
@@ -88,6 +90,7 @@ public class TmpRestTestMain {
 		int activeProcessInstanceCount;
 
 		referProcessDefinitions();//既存プロセス定義の確認
+		referProcessDefinition("key", "createTimersProcess");//特定のプロセス定義の確認
 		resBody = referProcessInstances();//アクティブなプロセスの確認
 		activeProcessInstanceCount = Integer.parseInt(resBody.get("size").toString());
 		System.out.println(SIGN_MARKABLE_STATUS + activeProcessInstanceCount + " process(s) is(are) currently active.");
@@ -139,13 +142,27 @@ public class TmpRestTestMain {
 		ArrayList <String> activeTasksIdList = extractFromHashMapList(activeTasksList, "id");
 		activeTaskId = Integer.parseInt(activeTasksIdList.get(0));
 		referTask(activeTaskId);//特定タスクの照会
-		completeTasks(activeTaskId);
-		
+		completeTask(activeTaskId);//特定タスクの終了
+		//確認
+		referTasks();//既存タスク一覧
+		referProcessInstances();//既存プロセスインスタンス一覧
+		//終了済みタスクインスタンス一覧の照会
+		referHistoricTaskInstances();
+
 	}
 
-	private void completeTasks(int taskInstanceId) {
-		// TODO Auto-generated method stub
+	private void referHistoricTaskInstances() throws URISyntaxException {
+		System.out.println(SIGN_METHOD_START + "SELECT ALL HISTORIC TASK INSTANCES");
+		execRestGetCall(URL_HI_TASK_INSTANCES + "?finished=true");
+	}
+
+	private void completeTask(int taskInstanceId) throws URISyntaxException {
+		System.out.println(SIGN_METHOD_START + "COMPLETE A TASK");
+		JSONObject reqBody = new JSONObject();
+		reqBody.put("action", "complete");
+		reqBody.put("variables", new ArrayList<>());
 		
+		execRestPostCall(URL_RU_TASKS + "/" + taskInstanceId, reqBody);
 	}
 
 	private void referTask(int taskInstanceId) throws URISyntaxException {
@@ -239,6 +256,11 @@ public class TmpRestTestMain {
 		execRestPostCall(URL_RU_PROCESS_INSTANCES, reqBody);
 	}
 
+	private void referProcessDefinition(String prmKey, String prmValue) throws URISyntaxException {
+		System.out.println(SIGN_METHOD_START + "SELECT A SPECIFIC PROCESS_DEFINITION");
+		execRestGetCall(URL_RE_PROCESS_DEFINITIONS + "?" + prmKey + "=" +prmValue);
+	}
+
 	/**
 	 * 既存プロセス定義の照会
 	 * 
@@ -268,21 +290,6 @@ public class TmpRestTestMain {
 		execRestPostCall(URL_ID_USERS, reqBody);
 	}
 
-	@SuppressWarnings("unused")
-	private void createUser_bk(String primaryChar) throws URISyntaxException {
-		System.out.println(SIGN_METHOD_START + "INSERT A RECORD INTO USER TABLE");
-
-		String reqBody = "{"
-				+ "\"id\":\"" + primaryChar + "\","
-				+ "\"firstName\":\"Tijs\","
-				+ "\"lastName\":\"Barrez\","
-				+ "\"email\":\"" + primaryChar + "@alfresco.org\","
-				+ "\"password\":\"pass123\""
-				+ "}";
-
-		execRestPostCall(URL_ID_USERS, reqBody, null);
-	}
-
 	/**
 	 * 既存ユーザの照会
 	 * 
@@ -294,31 +301,23 @@ public class TmpRestTestMain {
 	}
 
 	private void execRestPostCall(String requestPath, JSONObject reqBody) throws URISyntaxException {
-		execRestPostCall(requestPath, reqBody.toString(), reqBody);
-	}
-
-	private void execRestPostCall(String requestPath, String reqBodyStr, JSONObject reqBodyInJson4log) throws URISyntaxException {
-		@SuppressWarnings("unused")
-		String str4basicAuth = getStr4basicAuth();
 
 		// POST用の要求エンティティ
 		RequestEntity reqEntity = RequestEntity
 				.post(new URI(URL_ROOT + requestPath))
-				.header("Authorization", "Basic a2VybWl0Omtlcm1pdA==")
-//				.header("Authorization", str4basicAuth)
-//				.header("Authorization", "Basic " + str4basicAuth)//FIXME not sure why, doesnt work. needs the prefix??
+				.header("Authorization", "Basic " + getStr4basicAuth())
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)
-				.body(reqBodyStr);
+				.body(reqBody.toString());
 		
-		execRestCall(reqEntity, reqBodyInJson4log);
+		execRestCall(reqEntity, reqBody);
 	}
 
 	private LinkedHashMap execRestGetCall(String requestPath) throws URISyntaxException {
 		// GET用の要求エンティティ
 		RequestEntity reqEntity = RequestEntity
 				.get(new URI(URL_ROOT + requestPath))
-				.header("Authorization", basicAuthPass)
+				.header("Authorization", "Basic " + getStr4basicAuth())
 				.accept(MediaType.APPLICATION_JSON)
 				.build();
 	
@@ -329,7 +328,7 @@ public class TmpRestTestMain {
 		// PUT用の要求エンティティ
 		RequestEntity reqEntity = RequestEntity
 				.put(new URI(URL_ROOT + requestPath))
-				.header("Authorization", "Basic a2VybWl0Omtlcm1pdA==")
+				.header("Authorization", "Basic " + getStr4basicAuth())
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)
 				.body(reqBody.toString());
@@ -342,7 +341,7 @@ public class TmpRestTestMain {
 		// DELETE用の要求エンティティ
 		RequestEntity reqEntity = RequestEntity
 				.delete(new URI(URL_ROOT + requestPath))
-				.header("Authorization", basicAuthPass)
+				.header("Authorization", "Basic " + getStr4basicAuth())
 				.accept(MediaType.APPLICATION_JSON)
 				.build();
 	
@@ -401,13 +400,6 @@ public class TmpRestTestMain {
 	private String getStr4basicAuth() {
 		byte[] bytes = (userId + ":" + userPw).getBytes();
 		return new String(Base64.encodeBase64(bytes));
-//		kermit:Kermit
-//		a2VybWl0Oktlcm1pdA== --> should be "Basic a2VybWl0Omtlcm1pdA=="
-//		gonzo:Gonzo
-//		Z29uem86R29uem8=
-//		fozzie:Fozzie
-//		Zm96emllOkZvenppZQ==
-
 	}
 
 	/**
