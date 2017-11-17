@@ -23,36 +23,34 @@ import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
 
-/**
- *
- */
 @SuppressWarnings("rawtypes")
-public class TmpRestTestMain {
+public class BasicRestClient {
+	protected static boolean NEED_EXPERIMENT = true;
 
-	private static final String URL_ROOT = "http://localhost:8081/activiti-webapp-rest2/service";
-	private static final String URL_ID_USERS = "/identity/users";
-	private static final String URL_RE_PROCESS_DEFINITIONS = "/repository/process-definitions";
-	private static final String URL_RU_PROCESS_INSTANCES = "/runtime/process-instances";
-	private static final String URL_RU_TASKS = "/runtime/tasks";
-	private static final String URL_HI_PROCESS_INSTANCES = "/history/historic-process-instances";
-	private static final String URL_HI_TASK_INSTANCES = "/history/historic-task-instances";
+	protected static final String URL_ROOT = "http://localhost:8081/activiti-webapp-rest2/service";
+	protected static final String URL_ID_USERS = "/identity/users";
+	protected static final String URL_RE_PROCESS_DEFINITIONS = "/repository/process-definitions";
+	protected static final String URL_RU_PROCESS_INSTANCES = "/runtime/process-instances";
+	protected static final String URL_RU_TASKS = "/runtime/tasks";
+	protected static final String URL_HI_PROCESS_INSTANCES = "/history/historic-process-instances";
+	protected static final String URL_HI_TASK_INSTANCES = "/history/historic-task-instances";
 	
 
-	private static final String SIGN_METHOD_START = "\n■■ ";
-	private static final String SIGN_MARKABLE_STATUS = ">> ";
+	protected static final String SIGN_METHOD_START = "\n■■ ";
+	protected static final String SIGN_MARKABLE_STATUS = ">> ";
 
-	private RestTemplate restTemplate = new RestTemplate();//can be injected
+	protected RestTemplate restTemplate = new RestTemplate();//can be injected
 	
 	// available users:
 	// kermit:kermit --> should be "Basic a2VybWl0Omtlcm1pdA=="
 	// gonzo:gonzo
 	// fozzie:fozzie
-	private String userId = "kermit";
-	private String userPw = "kermit";
+	protected String userId = "kermit";
+	protected String userPw = "kermit";
 
 	private String uniqueStr = createUniqueStrFromCurrentTime();//HHmmで一意文字列を生成する
 	
-	private void execute() {
+	protected void execute() {
 
 		try {
 			if (NEED_EXPERIMENT) {
@@ -67,15 +65,13 @@ public class TmpRestTestMain {
 		}
 	}
 
-	protected static boolean NEED_EXPERIMENT = false;
-
-	@SuppressWarnings("unchecked")
+	/**
+	 * XXX 実験室
+	 * @throws URISyntaxException
+	 */
 	protected void gotoLaboratory() throws URISyntaxException {
-		LinkedHashMap resBody;
-		
-
+		System.out.println("Welcome to Rest Client Laboratory");
 	}
-
 
 	@SuppressWarnings("unchecked")
 	protected void execWholeScenario() throws URISyntaxException {
@@ -151,12 +147,12 @@ public class TmpRestTestMain {
 
 	}
 
-	private void referHistoricTaskInstances() throws URISyntaxException {
+	protected void referHistoricTaskInstances() throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + "SELECT ALL HISTORIC TASK INSTANCES");
 		execRestGetCall(URL_HI_TASK_INSTANCES + "?finished=true");
 	}
 
-	private void completeTask(int taskInstanceId) throws URISyntaxException {
+	protected void completeTask(int taskInstanceId) throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + "COMPLETE A TASK");
 		JSONObject reqBody = new JSONObject();
 		reqBody.put("action", "complete");
@@ -165,7 +161,7 @@ public class TmpRestTestMain {
 		execRestPostCall(URL_RU_TASKS + "/" + taskInstanceId, reqBody);
 	}
 
-	private void referTask(int taskInstanceId) throws URISyntaxException {
+	protected void referTask(int taskInstanceId) throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + "SELECT A SPESIFIC TASK");
 		execRestGetCall(URL_RU_TASKS + "/" + taskInstanceId);
 	}
@@ -175,23 +171,23 @@ public class TmpRestTestMain {
 	 * 
 	 * @throws URISyntaxException 
 	 */
-	private LinkedHashMap referTasks() throws URISyntaxException {
+	protected LinkedHashMap referTasks() throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + "SELECT ALL TASKS");
 		LinkedHashMap resBody = execRestGetCall(URL_RU_TASKS);
 		return resBody;
 	}
 
-	private void referHistoricProcessInstances() throws URISyntaxException {
+	protected void referHistoricProcessInstances() throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + "SELECT ALL HISTORIC PROCESS INSTANCES");
 		execRestGetCall(URL_HI_PROCESS_INSTANCES + "?finished=true");
 	}
 
-	private void deleteProcessInstance(int processInstanceId) throws URISyntaxException {
+	protected void deleteProcessInstance(int processInstanceId) throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + " DELETE A SPESIFIC PROCESS INSTANCE");
 		execRestDeleteCall(URL_RU_PROCESS_INSTANCES + "/" + processInstanceId);
 	}
 
-	private void activateProcessInstance(int processInstanceId) throws URISyntaxException {
+	protected void activateProcessInstance(int processInstanceId) throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + " ACTIVATE A SPESIFIC PROCESS INSTANCE");
 
 		JSONObject reqBody = new JSONObject();
@@ -200,7 +196,7 @@ public class TmpRestTestMain {
 		execRestPutCall(URL_RU_PROCESS_INSTANCES + "/" + processInstanceId, reqBody);
 	}
 
-	private void suspendProcessInstance(int processInstanceId) throws URISyntaxException {
+	protected void suspendProcessInstance(int processInstanceId) throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + " SUSPEND A SPESIFIC PROCESS INSTANCE");
 
 		JSONObject reqBody = new JSONObject();
@@ -210,7 +206,7 @@ public class TmpRestTestMain {
 	}
 
 
-	private ArrayList<String> extractFromHashMapList(ArrayList<LinkedHashMap> activeProcessInstancesList, String keyStr) {
+	protected ArrayList<String> extractFromHashMapList(ArrayList<LinkedHashMap> activeProcessInstancesList, String keyStr) {
 		ArrayList<String> valueList = new ArrayList<>();
 		for (LinkedHashMap processInstance : activeProcessInstancesList) {
 			valueList.add(processInstance.get(keyStr).toString());
@@ -218,7 +214,7 @@ public class TmpRestTestMain {
 		return valueList;
 	}
 
-	private void referProcessInstance(int processInstanceId) throws URISyntaxException {
+	protected void referProcessInstance(int processInstanceId) throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + " SELECT A SPESIFIC PROCESS INSTANCE");
 		execRestGetCall(URL_RU_PROCESS_INSTANCES + "/" + processInstanceId);
 	}
@@ -228,7 +224,7 @@ public class TmpRestTestMain {
 	 * 
 	 * @throws URISyntaxException
 	 */
-	private LinkedHashMap referProcessInstances() throws URISyntaxException {
+	protected LinkedHashMap referProcessInstances() throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + "SELECT ALL PROCESS INSTANCES");
 		LinkedHashMap resBody = execRestGetCall(URL_RU_PROCESS_INSTANCES);
 		return resBody;
@@ -240,7 +236,7 @@ public class TmpRestTestMain {
 	 * @param specificValue
 	 * @throws URISyntaxException 
 	 */
-	private void startProcess(String specificKey, String specificValue) throws URISyntaxException {
+	protected void startProcess(String specificKey, String specificValue) throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + "START A PROCESS");
 
 		JSONObject reqBody = new JSONObject();
@@ -256,7 +252,7 @@ public class TmpRestTestMain {
 		execRestPostCall(URL_RU_PROCESS_INSTANCES, reqBody);
 	}
 
-	private void referProcessDefinition(String prmKey, String prmValue) throws URISyntaxException {
+	protected void referProcessDefinition(String prmKey, String prmValue) throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + "SELECT A SPECIFIC PROCESS_DEFINITION");
 		execRestGetCall(URL_RE_PROCESS_DEFINITIONS + "?" + prmKey + "=" +prmValue);
 	}
@@ -266,7 +262,7 @@ public class TmpRestTestMain {
 	 * 
 	 * @throws URISyntaxException
 	 */
-	private void referProcessDefinitions() throws URISyntaxException {
+	protected void referProcessDefinitions() throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + "SELECT ALL FROM PROCESS_DEFINITION TABLE");
 		execRestGetCall(URL_RE_PROCESS_DEFINITIONS);
 	}
@@ -277,7 +273,7 @@ public class TmpRestTestMain {
 	 * @param primaryChar
 	 * @throws URISyntaxException
 	 */
-	private void createUser(String primaryChar) throws URISyntaxException {
+	protected void createUser(String primaryChar) throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + "INSERT A RECORD INTO USER TABLE");
 
 		JSONObject reqBody = new JSONObject();
@@ -295,12 +291,12 @@ public class TmpRestTestMain {
 	 * 
 	 * @throws URISyntaxException
 	 */
-	private void referUsers() throws URISyntaxException {
+	protected void referUsers() throws URISyntaxException {
 		System.out.println(SIGN_METHOD_START + "SELECT ALL FROM USER TABLE");
 		execRestGetCall(URL_ID_USERS);
 	}
 
-	private void execRestPostCall(String requestPath, JSONObject reqBody) throws URISyntaxException {
+	protected void execRestPostCall(String requestPath, JSONObject reqBody) throws URISyntaxException {
 
 		// POST用の要求エンティティ
 		RequestEntity reqEntity = RequestEntity
@@ -313,7 +309,7 @@ public class TmpRestTestMain {
 		execRestCall(reqEntity, reqBody);
 	}
 
-	private LinkedHashMap execRestGetCall(String requestPath) throws URISyntaxException {
+	protected LinkedHashMap execRestGetCall(String requestPath) throws URISyntaxException {
 		// GET用の要求エンティティ
 		RequestEntity reqEntity = RequestEntity
 				.get(new URI(URL_ROOT + requestPath))
@@ -324,7 +320,7 @@ public class TmpRestTestMain {
 		return execRestCall(reqEntity, null);
 	}
 
-	private void execRestPutCall(String requestPath, JSONObject reqBody) throws URISyntaxException {
+	protected void execRestPutCall(String requestPath, JSONObject reqBody) throws URISyntaxException {
 		// PUT用の要求エンティティ
 		RequestEntity reqEntity = RequestEntity
 				.put(new URI(URL_ROOT + requestPath))
@@ -337,7 +333,7 @@ public class TmpRestTestMain {
 		
 	}
 
-	private void execRestDeleteCall(String requestPath) throws URISyntaxException {
+	protected void execRestDeleteCall(String requestPath) throws URISyntaxException {
 		// DELETE用の要求エンティティ
 		RequestEntity reqEntity = RequestEntity
 				.delete(new URI(URL_ROOT + requestPath))
@@ -406,8 +402,8 @@ public class TmpRestTestMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		TmpRestTestMain ttm = new TmpRestTestMain();
-		ttm.execute();
+		BasicRestClient client = new BasicRestClient();
+		client.execute();
 
 	}
 
