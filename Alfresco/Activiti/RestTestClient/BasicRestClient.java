@@ -9,7 +9,9 @@ import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.activiti.engine.impl.util.json.JSONArray;
 import org.activiti.engine.impl.util.json.JSONObject;
@@ -25,7 +27,7 @@ import com.google.gson.Gson;
 
 @SuppressWarnings("rawtypes")
 public class BasicRestClient {
-	protected static boolean NEED_EXPERIMENT = true;
+	protected static boolean NEED_EXPERIMENT = true;//XXX SWITCH METHODS HERE!!
 
 	protected static final String URL_ROOT = "http://localhost:8081/activiti-webapp-rest2/service";
 	protected static final String URL_ID_USERS = "/identity/users";
@@ -36,10 +38,12 @@ public class BasicRestClient {
 	protected static final String URL_HI_TASK_INSTANCES = "/history/historic-task-instances";
 	
 
-	protected static final String SIGN_METHOD_START = "\n■■ ";
+	protected static final String SIGN_METHOD_START = "### ";
 	protected static final String SIGN_MARKABLE_STATUS = ">> ";
 
 	protected RestTemplate restTemplate = new RestTemplate();//can be injected
+	protected String methodName;
+
 	
 	// available users:
 	// kermit:kermit --> should be "Basic a2VybWl0Omtlcm1pdA=="
@@ -48,7 +52,7 @@ public class BasicRestClient {
 	protected String userId = "kermit";
 	protected String userPw = "kermit";
 
-	private String uniqueStr = createUniqueStrFromCurrentTime();//HHmmで一意文字列を生成する
+	protected String uniqueStr = createUniqueStrFromCurrentTime();//HHmmで一意文字列を生成する
 	
 	protected void execute() {
 
@@ -70,16 +74,32 @@ public class BasicRestClient {
 	 * @throws URISyntaxException
 	 */
 	protected void gotoLaboratory() throws URISyntaxException {
+		logMethodName();
 		System.out.println("Welcome to Rest Client Laboratory");
 	}
 
 	@SuppressWarnings("unchecked")
 	protected void execWholeScenario() throws URISyntaxException {
+		logMethodName();
+
 		LinkedHashMap resBody;
 		
-		// ■ ユーザ管理系
-		referUsers();
-		createUser("hoge" + uniqueStr);//Activitiのユーザテーブル登録時のPKとなる文字列を引数に指定する
+		{// ■ ユーザ管理系
+			referUsers();
+			String tmpUserId = "tmpUser" + uniqueStr;//Activitiのユーザテーブル登録時のPKとなる文字列を引数に指定する
+			// 登録
+			createUser(tmpUserId);
+			// 照会
+			referUsers();
+			// 更新
+			Map<String, String> updateTargets = new HashMap<>();
+			updateTargets.put("lastName", "myNewFamilyName");
+			updateUser(tmpUserId, updateTargets);
+			referUser(tmpUserId);
+			// 削除
+			deleteUser(tmpUserId);
+			referUsers();
+		}
 		
 		// ■ プロセス制御系
 		int processInstanceId;
@@ -148,11 +168,13 @@ public class BasicRestClient {
 	}
 
 	protected void referHistoricTaskInstances() throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + "SELECT ALL HISTORIC TASK INSTANCES");
 		execRestGetCall(URL_HI_TASK_INSTANCES + "?finished=true");
 	}
 
 	protected void completeTask(int taskInstanceId) throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + "COMPLETE A TASK");
 		JSONObject reqBody = new JSONObject();
 		reqBody.put("action", "complete");
@@ -162,6 +184,7 @@ public class BasicRestClient {
 	}
 
 	protected void referTask(int taskInstanceId) throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + "SELECT A SPESIFIC TASK");
 		execRestGetCall(URL_RU_TASKS + "/" + taskInstanceId);
 	}
@@ -172,22 +195,26 @@ public class BasicRestClient {
 	 * @throws URISyntaxException 
 	 */
 	protected LinkedHashMap referTasks() throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + "SELECT ALL TASKS");
 		LinkedHashMap resBody = execRestGetCall(URL_RU_TASKS);
 		return resBody;
 	}
 
 	protected void referHistoricProcessInstances() throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + "SELECT ALL HISTORIC PROCESS INSTANCES");
 		execRestGetCall(URL_HI_PROCESS_INSTANCES + "?finished=true");
 	}
 
 	protected void deleteProcessInstance(int processInstanceId) throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + " DELETE A SPESIFIC PROCESS INSTANCE");
 		execRestDeleteCall(URL_RU_PROCESS_INSTANCES + "/" + processInstanceId);
 	}
 
 	protected void activateProcessInstance(int processInstanceId) throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + " ACTIVATE A SPESIFIC PROCESS INSTANCE");
 
 		JSONObject reqBody = new JSONObject();
@@ -197,6 +224,7 @@ public class BasicRestClient {
 	}
 
 	protected void suspendProcessInstance(int processInstanceId) throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + " SUSPEND A SPESIFIC PROCESS INSTANCE");
 
 		JSONObject reqBody = new JSONObject();
@@ -215,6 +243,7 @@ public class BasicRestClient {
 	}
 
 	protected void referProcessInstance(int processInstanceId) throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + " SELECT A SPESIFIC PROCESS INSTANCE");
 		execRestGetCall(URL_RU_PROCESS_INSTANCES + "/" + processInstanceId);
 	}
@@ -225,6 +254,7 @@ public class BasicRestClient {
 	 * @throws URISyntaxException
 	 */
 	protected LinkedHashMap referProcessInstances() throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + "SELECT ALL PROCESS INSTANCES");
 		LinkedHashMap resBody = execRestGetCall(URL_RU_PROCESS_INSTANCES);
 		return resBody;
@@ -237,6 +267,7 @@ public class BasicRestClient {
 	 * @throws URISyntaxException 
 	 */
 	protected void startProcess(String specificKey, String specificValue) throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + "START A PROCESS");
 
 		JSONObject reqBody = new JSONObject();
@@ -253,6 +284,7 @@ public class BasicRestClient {
 	}
 
 	protected void referProcessDefinition(String prmKey, String prmValue) throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + "SELECT A SPECIFIC PROCESS_DEFINITION");
 		execRestGetCall(URL_RE_PROCESS_DEFINITIONS + "?" + prmKey + "=" +prmValue);
 	}
@@ -263,8 +295,33 @@ public class BasicRestClient {
 	 * @throws URISyntaxException
 	 */
 	protected void referProcessDefinitions() throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + "SELECT ALL FROM PROCESS_DEFINITION TABLE");
 		execRestGetCall(URL_RE_PROCESS_DEFINITIONS);
+	}
+
+	protected void deleteUser(String userId) throws URISyntaxException {
+		logMethodName();
+		System.out.println(SIGN_METHOD_START + "DELETE A SPECIFIC RECORD FROM USER TABLE");
+		execRestDeleteCall(URL_ID_USERS + "/" + userId);		
+	}
+
+	protected void referUser(String userId) throws URISyntaxException {
+		logMethodName();
+		System.out.println(SIGN_METHOD_START + "SELECT A SPECIFIC RECORD FROM USER TABLE");
+		execRestGetCall(URL_ID_USERS + "/" + userId);		
+	}
+
+	protected void updateUser(String userId, Map<String, String> updateTargets) throws URISyntaxException {
+		logMethodName();
+		System.out.println(SIGN_METHOD_START + "UPDATE A SPECIFIC RECORD IN USER TABLE");
+
+		JSONObject reqBody = new JSONObject();
+		for(Map.Entry<String, String> target : updateTargets.entrySet()) {
+			reqBody.put(target.getKey(), target.getValue());
+		}
+
+		execRestPutCall(URL_ID_USERS + "/" + userId, reqBody);
 	}
 
 	/**
@@ -274,6 +331,7 @@ public class BasicRestClient {
 	 * @throws URISyntaxException
 	 */
 	protected void createUser(String primaryChar) throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + "INSERT A RECORD INTO USER TABLE");
 
 		JSONObject reqBody = new JSONObject();
@@ -292,6 +350,7 @@ public class BasicRestClient {
 	 * @throws URISyntaxException
 	 */
 	protected void referUsers() throws URISyntaxException {
+		logMethodName();
 		System.out.println(SIGN_METHOD_START + "SELECT ALL FROM USER TABLE");
 		execRestGetCall(URL_ID_USERS);
 	}
@@ -396,6 +455,11 @@ public class BasicRestClient {
 	private String getStr4basicAuth() {
 		byte[] bytes = (userId + ":" + userPw).getBytes();
 		return new String(Base64.encodeBase64(bytes));
+	}
+
+	protected void logMethodName() {
+		methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
+	    System.out.println("\n" + SIGN_METHOD_START + methodName);
 	}
 
 	/**
